@@ -2,8 +2,8 @@ import { useState } from 'react'
 import heroImg from '../assets/img-mar-forte-reis.jpg'
 import './Style.css'
 
-function Register() {
-  const [mode, setMode] = useState('signup')
+function Register({ initialMode = 'signup', onNavigate }) {
+  const [mode, setMode] = useState(initialMode)
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -103,13 +103,13 @@ function Register() {
 
       <section className="register-panel" aria-label="Cadastro de usuario">
         <header className="register-header">
-          <a className="register-brand" href="/" aria-label="Voltar para a pagina inicial">
+          <button className="register-brand" type="button" onClick={() => onNavigate?.('home')} aria-label="Voltar para a pagina inicial">
             PotiMap
-          </a>
-          <a className="register-back" href="/">
+          </button>
+          <button className="register-back" type="button" onClick={() => onNavigate?.('home')}>
             Voltar para explorar
             <span aria-hidden="true">-&gt;</span>
-          </a>
+          </button>
         </header>
 
         <div className="register-card">
