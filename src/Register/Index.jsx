@@ -104,7 +104,7 @@ function Register() {
       <section className="register-panel" aria-label="Cadastro de usuario">
         <header className="register-header">
           <a className="register-brand" href="/" aria-label="Voltar para a pagina inicial">
-            RN Discover
+            PotiMap
           </a>
           <a className="register-back" href="/">
             Voltar para explorar

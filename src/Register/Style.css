@@ -254,10 +254,10 @@
   width: 100%;
   min-width: 0;
   border: 0;
-  outline: 0;
   background: transparent;
   color: #172033;
   font: inherit;
+  padding-right: 16px;
 }
 
 .register-field input::placeholder {

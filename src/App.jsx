@@ -1,4 +1,4 @@
-import User from './Register/Index.jsx'
+import User from './User/Index.jsx'
 
 function App() {
   return <User />

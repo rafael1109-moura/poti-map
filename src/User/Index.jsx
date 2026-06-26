@@ -128,7 +128,7 @@ function User() {
     <main className="user-page">
       <header className="user-topbar">
         <a className="user-brand" href="/">
-          RN Discover
+          PotiMap
         </a>
 
         <label className="user-search">
@@ -285,9 +285,9 @@ function User() {
       <footer className="user-footer">
         <div>
           <a className="user-brand" href="/">
-            RN Discover
+            PotiMap
           </a>
-          <p>© 2024 Rio Grande do Norte Tourism. Criado para viajantes.</p>
+          <p>© 2026 Rio Grande do Norte Tourism. Criado para viajantes.</p>
         </div>
         <a href="/">Explore RN</a>
         <a href="/">Dicas de seguranca</a>
