@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const navItems = ['Home', 'Destinos', 'Experiências', 'Contato']
 
-function Navbar() {
+function Navbar({ onNavigate }) {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
@@ -39,12 +39,12 @@ function Navbar() {
       </nav>
 
       <div className="navbar-actions">
-        <a className="text-link" href="#login">
+        <button className="text-link" type="button" onClick={() => onNavigate?.('signin')}>
           Login
-        </a>
-        <a className="btn btn-primary" href="#registre-se">
+        </button>
+        <button className="btn btn-primary" type="button" onClick={() => onNavigate?.('register')}>
           Registre-se
-        </a>
+        </button>
       </div>
     </header>
   )
