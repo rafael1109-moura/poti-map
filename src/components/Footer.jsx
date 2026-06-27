@@ -7,7 +7,7 @@ function Footer({ onNavigate }) {
       <div className="footer-brand">
         <img src={potiMapLogo} alt="" aria-hidden="true" />
         <div>
-          <strong>PotiMap</strong>
+          <strong>Tatour</strong>
           <p>Explore o Rio Grande do Norte com mapas, roteiros e favoritos em um so lugar.</p>
         </div>
       </div>
@@ -18,7 +18,7 @@ function Footer({ onNavigate }) {
         </button>
       </nav>
 
-      <p className="footer-copy">(c) 2026 PotiMap. Turismo potiguar feito com carinho.</p>
+      <p className="footer-copy">(c) 2026 Tatour. Turismo potiguar feito com carinho.</p>
     </footer>
   )
 }

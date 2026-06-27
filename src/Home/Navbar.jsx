@@ -31,7 +31,7 @@ function Navbar({ onNavigate, contactView = 'home' }) {
       <div className="brand-block">
         <img className="brand-logo" src={potiMapLogo} alt="" aria-hidden="true" />
         <div>
-          <h2>PotiMap</h2>
+          <h2>Tatour</h2>
           <p>Se aventure no Rio Grande do Norte</p>
         </div>
       </div>
