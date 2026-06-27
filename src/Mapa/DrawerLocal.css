@@ -1,0 +1,195 @@
+/* ================================================================
+   DrawerLocal.css
+   Estilos do painel inferior (bottom drawer) com tema de turismo.
+
+   Paleta de cores:
+     --azul-mar      Azul principal, remetendo ao oceano/céu
+     --laranja-sol   Laranja vibrante para destaques e interações
+     --areia         Tom de areia para fundos e superfícies neutras
+     --areia-escura  Versão mais escura para bordas e separadores
+     --texto-escuro  Cor padrão de texto
+     --texto-muted   Texto secundário/suave
+================================================================ */
+
+:root {
+  --azul-mar:      #1A6FA8;
+  --azul-mar-claro:#E8F4FD;
+  --laranja-sol:   #E8710A;
+  --laranja-claro: #FEF0E3;
+  --areia:         #F7F2E8;
+  --areia-escura:  #E2D9C8;
+  --texto-escuro:  #2C2C2C;
+  --texto-muted:   #7A7263;
+  --branco:        #FFFFFF;
+
+  /* Sombra característica do drawer */
+  --sombra-drawer: 0 -4px 24px rgba(0, 0, 0, 0.15),
+                   0 -1px 6px  rgba(0, 0, 0, 0.08);
+}
+
+/* ── Overlay ────────────────────────────────────────────────────
+   Camada semitransparente sobre o mapa.
+   Clicar fora do painel fecha o drawer.
+────────────────────────────────────────────────────────────── */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;                        /* cobre toda a tela */
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;           /* painel fica colado na base */
+}
+
+/* ── Painel principal ───────────────────────────────────────────
+   O "drawer" em si. Sobe por cima do mapa a partir da base.
+   max-height garante que o mapa ainda apareça no topo.
+────────────────────────────────────────────────────────────── */
+.drawer-painel {
+  width: 100%;
+  max-height: 85vh;                /* deixa ~15% do mapa visível */
+  background: var(--branco);
+  border-radius: 20px 20px 0 0;   /* cantos arredondados no topo */
+  box-shadow: var(--sombra-drawer);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                /* impede que filhos vazem */
+
+  /* Animação de entrada: o drawer sobe do fundo */
+  animation: subirDrawer 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes subirDrawer {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ── Alça visual ────────────────────────────────────────────────
+   Barra decorativa no topo do drawer.
+   Indica que o painel pode ser arrastado (drag futuro).
+────────────────────────────────────────────────────────────── */
+.drawer-alca-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 6px;
+  cursor: grab;
+}
+
+.drawer-alca {
+  display: block;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--areia-escura);
+}
+
+/* ── Cabeçalho ──────────────────────────────────────────────────
+   Área fixa no topo: nome, endereço, nota e botão fechar.
+   Não rola junto com o corpo.
+────────────────────────────────────────────────────────────── */
+.drawer-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 20px 14px;
+  background: var(--branco);
+  border-bottom: 1.5px solid var(--areia-escura);
+}
+
+.drawer-cabecalho-info {
+  flex: 1;
+}
+
+/* Nome do ponto turístico */
+.drawer-nome {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto-escuro);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+/* Endereço ou descrição curta */
+.drawer-endereco {
+  font-size: 13px;
+  color: var(--texto-muted);
+  margin: 0 0 8px;
+}
+
+/* Linha da nota média */
+.drawer-nota {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Estrela laranja de destaque */
+.drawer-estrela-icone {
+  color: var(--laranja-sol);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.drawer-nota-valor {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--texto-escuro);
+}
+
+.drawer-nota-total {
+  font-size: 13px;
+  color: var(--texto-muted);
+}
+
+/* Botão X para fechar o drawer */
+.drawer-btn-fechar {
+  background: var(--areia);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  color: var(--texto-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.drawer-btn-fechar:hover {
+  background: var(--areia-escura);
+}
+
+/* ── Corpo com scroll ───────────────────────────────────────────
+   Área rolável: formulário de avaliação + lista de avaliações.
+   flex: 1 faz ela ocupar todo o espaço restante abaixo do header.
+────────────────────────────────────────────────────────────── */
+.drawer-corpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: var(--areia);
+
+  /* Scroll suave no iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Divisor entre formulário e lista de avaliações */
+.drawer-divisor {
+  border: none;
+  border-top: 1.5px solid var(--areia-escura);
+  margin: 20px 0;
+}
+
+/* ── Responsividade desktop ─────────────────────────────────────
+   Em telas maiores, limita a largura e centraliza (opcional).
+────────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .drawer-painel {
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 20px 20px 0 0;
+  }
+}

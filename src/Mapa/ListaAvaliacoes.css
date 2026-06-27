@@ -1,0 +1,121 @@
+/* ================================================================
+   ListaAvaliacoes.css
+   Estilos para a lista de avaliações de outros usuários.
+   Variáveis de cor definidas em DrawerLocal.css (:root).
+================================================================ */
+
+/* Título da seção */
+.lista-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--azul-mar);
+  margin: 0 0 14px;
+}
+
+/* Remove o estilo padrão de lista do <ul> */
+.lista-itens {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Card de avaliação ──────────────────────────────────────────
+   Cada avaliação fica em um card branco com sombra sutil.
+────────────────────────────────────────────────────────────── */
+.avaliacao-card {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Linha superior: avatar + nome + data */
+.avaliacao-card-topo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* ── Avatar ──────────────────────────────────────────────────────
+   Círculo de 38px que mostra foto ou iniciais.
+────────────────────────────────────────────────────────────── */
+.avaliacao-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--azul-mar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Foto do usuário (quando disponível) */
+.avaliacao-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Iniciais do nome quando não há foto */
+.avaliacao-avatar-iniciais {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--branco);
+  letter-spacing: 0.03em;
+}
+
+/* Nome e data empilhados verticalmente */
+.avaliacao-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.avaliacao-usuario {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-escuro);
+}
+
+.avaliacao-data {
+  font-size: 11px;
+  color: var(--texto-muted);
+}
+
+/* ── Estrelas de leitura (somente exibição) ───────────────────── */
+.avaliacao-estrelas-leitura {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+
+.estrela-leitura--ativa  { color: var(--laranja-sol); font-size: 14px; }
+.estrela-leitura--inativa { color: var(--areia-escura); font-size: 14px; }
+
+/* Texto do comentário */
+.avaliacao-card-comentario {
+  font-size: 13px;
+  color: var(--texto-escuro);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Estado vazio ────────────────────────────────────────────────
+   Mensagem quando ainda não há avaliações.
+────────────────────────────────────────────────────────────── */
+.lista-vazia {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.lista-vazia-texto {
+  font-size: 14px;
+  color: var(--texto-muted);
+  margin: 0;
+}
