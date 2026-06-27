@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import potiMapLogo from '../assets/PotiMap-logo-real.png'
+import './Style.css'
 
-const navItems = ['Home', 'Destinos', 'Experiências', 'Contato']
-
-function Navbar({ onNavigate }) {
+function Navbar({ onNavigate, contactView = 'home' }) {
   const [isVisible, setIsVisible] = useState(true)
+  const navItems = [
+    { label: 'Mapa', view: 'home', targetId: 'mapa' },
+    { label: 'Perfil', view: 'user' },
+    { label: 'Contato', view: contactView, targetId: 'contato' },
+  ]
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -34,18 +38,24 @@ function Navbar({ onNavigate }) {
 
       <nav className="navbar" aria-label="Navegação principal">
         {navItems.map((item) => (
-          <a key={item} href={`#${item.toLowerCase()}`}>
-            {item}
-          </a>
+          <button
+            key={item.label}
+            className="nav-button"
+            type="button"
+            onClick={() => onNavigate?.(item.view, item.targetId)}
+          >
+            {item.label}
+          </button>
         ))}
       </nav>
 
-      <div className="navbar-actions">
-        <button className="text-link" type="button" onClick={() => onNavigate?.('signin')}>
+      <div className="navbar-login">
+        <button
+          className="nav-button login-button"
+          type="button"
+          onClick={() => onNavigate?.('signin')}
+        >
           Login
-        </button>
-        <button className="btn btn-primary" type="button" onClick={() => onNavigate?.('register')}>
-          Registre-se
         </button>
       </div>
     </header>
