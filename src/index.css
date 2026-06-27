@@ -9,8 +9,18 @@
 
 :root {
   font-family: 'Poppins', sans-serif;
-  color: #141823;
-  background: #f8f6f1;
+  --pm-blue: #1e88e5;
+  --pm-blue-2: #8ed5ff;
+  --pm-blue-3: #dff5ff;
+  --pm-orange: #ff8a3d;
+  --pm-text: #06283d;
+  --pm-muted: #4b6478;
+  --pm-card: rgba(255, 255, 255, 0.86);
+  --pm-border: rgba(255, 255, 255, 0.42);
+  --pm-shadow: 0 24px 70px rgba(6, 40, 61, 0.16);
+  --pm-radius: 22px;
+  color: var(--pm-text);
+  background: linear-gradient(135deg, var(--pm-blue-3) 0%, var(--pm-blue-2) 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,7 +31,7 @@ html, body {
   width: 100%;
   min-height: 100svh;
   min-width: 320px;
-  background: #f8f6f1;
+  background: linear-gradient(135deg, var(--pm-blue-3) 0%, var(--pm-blue-2) 100%);
 }
 
 body {
@@ -32,7 +42,7 @@ body {
 #root, .App {
   width: 100%;
   min-height: 100svh;
-  background-color: #ffffff;
+  background: transparent;
   display: flex;
   flex-direction: column;
 }
@@ -67,3 +77,12 @@ img { max-width: 100%; height: auto; display: block; }
   color: #fff;
 }
 
+@media (max-width: 520px) {
+  .app-switcher {
+    overflow-x: auto;
+  }
+
+  .app-switcher button {
+    white-space: nowrap;
+  }
+}
