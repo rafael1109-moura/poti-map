@@ -107,8 +107,18 @@
 }
 
 .register-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.15rem;
   font-weight: 800;
+}
+
+.register-brand img {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .register-back,
@@ -427,6 +437,7 @@ select:focus-visible {
 @media (max-width: 620px) {
   .register-page {
     padding: 16px;
+    gap: 16px;
   }
 
   .register-visual {
@@ -446,6 +457,11 @@ select:focus-visible {
     flex-direction: column;
   }
 
+  .register-brand img {
+    width: 42px;
+    height: 42px;
+  }
+
   .register-card {
     padding: 18px;
   }
@@ -458,5 +474,35 @@ select:focus-visible {
 
   .register-social {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .register-page {
+    padding: 12px;
+  }
+
+  .register-panel {
+    padding: 14px;
+  }
+
+  .register-visual,
+  .register-panel,
+  .register-card {
+    border-radius: 16px;
+  }
+
+  .register-visual__copy {
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
+  }
+
+  .register-visual__copy h1 {
+    font-size: 1.75rem;
+  }
+
+  .register-title h2 {
+    font-size: 1.8rem;
   }
 }

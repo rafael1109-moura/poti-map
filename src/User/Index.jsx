@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import coastImg from '../assets/imagem_home.jpg'
 import natalImg from '../assets/img-mar-forte-reis.jpg'
+import potiMapLogo from '../assets/PotiMap-logo-real.png'
 import './Style.css'
 
 // Dados simulados que, no futuro, virão do seu banco de dados via API Node.js
@@ -155,7 +156,10 @@ function User() {
     <main className="user-page">
       <header className="user-topbar">
         <div className="user-brand-block">
-          <a className="user-brand" href="/">PotiMap</a>
+          <a className="user-brand" href="/">
+            <img src={potiMapLogo} alt="" aria-hidden="true" />
+            <span>PotiMap</span>
+          </a>
           <p>Se aventure no Rio Grande do Norte</p>
         </div>
 
@@ -379,7 +383,10 @@ function User() {
 
       <footer className="user-footer">
         <div>
-          <a className="user-brand" href="/">PotiMap</a>
+          <a className="user-brand user-brand--footer" href="/">
+            <img src={potiMapLogo} alt="" aria-hidden="true" />
+            <span>PotiMap</span>
+          </a>
           <p>© 2026 Rio Grande do Norte Tourism. Criado para viajantes.</p>
         </div>
         <a href="/">Explore RN</a>
