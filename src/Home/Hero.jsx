@@ -8,7 +8,7 @@ function Hero() {
           <span className="eyebrow">Turismo de alto impacto</span>
           <h1 id="hero-title">Viva o melhor do Rio Grande do Norte com experiências únicas</h1>
           <p id="hero-description">
-            Explore praias paradisíacas, trilhas inesquecíveis e cultura local em uma viagem que combina descanso, aventura e autenticidade.
+            Crie recordações unicas e acumule pontos enquanto explora o Rio Grande do Norte
           </p>
 
           <div className="hero-actions">

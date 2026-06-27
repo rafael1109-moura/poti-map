@@ -1,64 +1,94 @@
 /* ================================================================
    Mapa.css
-   Estilos do componente principal de mapa.
    Variáveis de cor definidas em DrawerLocal.css (:root).
 ================================================================ */
 
 /* ── Wrapper ─────────────────────────────────────────────────────
-   Container que empilha mapa e drawer.
-   position: relative necessário para o drawer se posicionar
-   corretamente sobre o mapa via position: fixed.
+   position: relative é obrigatório: a BarraPesquisa usa
+   position: absolute referenciada a este elemento.
+
+   100dvh (dynamic viewport height) é a unidade correta para mobile:
+   leva em conta a barra de endereço do navegador que aparece/some
+   ao rolar. Em browsers antigos cai para 100vh como fallback.
 ────────────────────────────────────────────────────────────── */
 .mapa-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;              /* ocupa toda a altura da viewport */
+  height: 100vh;        /* fallback para browsers sem suporte a dvh */
+  height: 100dvh;       /* corrige o bug de altura no mobile (iOS/Android) */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;     /* impede scroll indesejado na página */
+}
+
+/* ── Título acima do mapa ────────────────────────────────────────
+   flex-shrink: 0 garante que o título nunca seja comprimido.
+   O mapa-container abaixo ocupa o restante com flex: 1.
+────────────────────────────────────────────────────────────── */
+.mapa-titulo {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 14px 16px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--azul-mar);
+  background: var(--areia);
+  border-bottom: 1.5px solid var(--areia-escura);
+
+  /* Evita que o texto fique colado sob a safe-area do iPhone */
+  padding-top: max(14px, env(safe-area-inset-top));
 }
 
 /* ── Container do mapa ──────────────────────────────────────────
-   Deve ter dimensões explícitas para o Mapbox renderizar.
+   flex: 1 faz ele ocupar EXATAMENTE o espaço que sobrou
+   depois do título. É aqui que o Mapbox renderiza o canvas.
+
+   position: relative é necessário para a BarraPesquisa
+   (position: absolute) se ancorar ao topo DESTE elemento,
+   não ao topo do wrapper inteiro.
 ────────────────────────────────────────────────────────────── */
 .mapa-container {
+  position: relative;   /* âncora da barra de pesquisa */
+  flex: 1;              /* ocupa todo o espaço restante */
   width: 100%;
-  height: 100%;
+  min-height: 0;        /* necessário para flex funcionar corretamente */
 }
 
+/* ── Mensagem de erro ───────────────────────────────────────────
+   Exibida quando o Mapbox não carrega ou o token está ausente.
+────────────────────────────────────────────────────────────── */
 .mapa-erro {
   position: absolute;
-  inset: 24px;
-  z-index: 2;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  border: 1px solid rgba(232, 113, 10, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
+  padding: 24px;
+  background: var(--areia);
   color: var(--texto-escuro);
   font-size: 15px;
-  font-weight: 600;
   text-align: center;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  line-height: 1.5;
 }
 
 /* ── Marcador personalizado ─────────────────────────────────────
-   Alfinete no estilo turismo: laranja-sol com borda branca.
-   A forma de "gota" é criada com border-radius assimétrico
-   e rotação de -45 graus.
+   Alfinete laranja-sol com borda branca.
+   Forma de "gota" via border-radius assimétrico + rotate(-45deg).
 ────────────────────────────────────────────────────────────── */
 .marcador-turismo {
   width: 32px;
   height: 32px;
   background: var(--laranja-sol);
   border: 3px solid var(--branco);
-  border-radius: 50% 50% 50% 0;   /* forma de alfinete/gota */
+  border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Ponto branco interno (estética de alfinete) */
+/* Ponto branco interno */
 .marcador-turismo::after {
   content: '';
   position: absolute;
@@ -71,13 +101,11 @@
   border-radius: 50%;
 }
 
-/* Efeito ao passar o mouse: marcador cresce levemente */
 .marcador-turismo:hover {
   transform: rotate(-45deg) scale(1.15);
   box-shadow: 0 4px 14px rgba(232, 113, 10, 0.45);
 }
 
-/* Foco via teclado (acessibilidade) */
 .marcador-turismo:focus-visible {
   outline: 3px solid var(--azul-mar);
   outline-offset: 2px;
