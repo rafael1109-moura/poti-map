@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import heroImg from '../assets/img-mar-forte-reis.jpg'
+import potiMapLogo from '../assets/PotiMap-logo-real.png'
 import './Style.css'
 
 function Register({ initialMode = 'signup', onNavigate }) {
@@ -104,7 +105,8 @@ function Register({ initialMode = 'signup', onNavigate }) {
       <section className="register-panel" aria-label="Cadastro de usuario">
         <header className="register-header">
           <button className="register-brand" type="button" onClick={() => onNavigate?.('home')} aria-label="Voltar para a pagina inicial">
-            PotiMap
+            <img src={potiMapLogo} alt="" aria-hidden="true" />
+            <span>PotiMap</span>
           </button>
           <button className="register-back" type="button" onClick={() => onNavigate?.('home')}>
             Voltar para explorar

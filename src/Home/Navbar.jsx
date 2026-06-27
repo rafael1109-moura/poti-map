@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import potiMapLogo from '../assets/PotiMap-logo-real.png'
 
 const navItems = ['Home', 'Destinos', 'Experiências', 'Contato']
 
@@ -24,6 +25,7 @@ function Navbar({ onNavigate }) {
   return (
     <header className={`site-header ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="brand-block">
+        <img className="brand-logo" src={potiMapLogo} alt="" aria-hidden="true" />
         <div>
           <h2>PotiMap</h2>
           <p>Se aventure no Rio Grande do Norte</p>
