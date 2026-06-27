@@ -1,0 +1,172 @@
+/* ================================================================
+   AvaliacaoForm.css
+   Estilos do formulário de avaliação.
+   As variáveis de cor são definidas em DrawerLocal.css (:root).
+================================================================ */
+
+/* ── Container da seção ─────────────────────────────────────────
+   Fundo branco para contrastar com o fundo areia do corpo do drawer.
+────────────────────────────────────────────────────────────── */
+.avaliacao-form {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Título "Avaliar este local" */
+.avaliacao-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--azul-mar);
+  margin: 0 0 14px;
+}
+
+/* ── Estrelas ────────────────────────────────────────────────────
+   Linha de 5 botões em estrela. Tamanho grande para facilitar
+   o toque em dispositivos móveis (mínimo recomendado: 44px).
+────────────────────────────────────────────────────────────── */
+.avaliacao-estrelas {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.avaliacao-estrela-btn {
+  font-size: 34px;
+  line-height: 1;
+  color: var(--areia-escura);     /* cinza/areia quando inativa */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.15s, transform 0.1s;
+  min-width: 44px;               /* área de toque acessível */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estrela ativa: laranja-sol */
+.avaliacao-estrela-btn--ativa {
+  color: var(--laranja-sol);
+}
+
+/* Micro-animação ao clicar */
+.avaliacao-estrela-btn:active {
+  transform: scale(0.88);
+}
+
+/* Texto descritivo da nota (ex: "Excelente!") */
+.avaliacao-nota-texto {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--laranja-sol);
+  margin: 0 0 12px;
+}
+
+/* ── Textarea de comentário ──────────────────────────────────────
+   Campo de texto livre. resize: none para controlar o layout.
+────────────────────────────────────────────────────────────── */
+.avaliacao-comentario {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--areia-escura);
+  border-radius: 10px;
+  background: var(--areia);
+  color: var(--texto-escuro);
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 12px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 4px;
+}
+
+/* Borda azul-mar ao focar (acessibilidade + UX) */
+.avaliacao-comentario:focus {
+  border-color: var(--azul-mar);
+}
+
+.avaliacao-comentario::placeholder {
+  color: var(--texto-muted);
+}
+
+/* Contador de caracteres no canto */
+.avaliacao-contador {
+  font-size: 11px;
+  color: var(--texto-muted);
+  text-align: right;
+  margin: 0 0 12px;
+}
+
+/* ── Botão de foto ────────────────────────────────────────────────
+   Estilo secundário: contorno azul, fundo azul-claro.
+   Sem funcionalidade por ora (ver AvaliacaoForm.jsx para o TODO).
+────────────────────────────────────────────────────────────── */
+.avaliacao-btn-foto {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1.5px dashed var(--azul-mar);
+  border-radius: 10px;
+  background: var(--azul-mar-claro);
+  color: var(--azul-mar);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.2s;
+}
+
+.avaliacao-btn-foto:hover {
+  background: #d2eaf8;
+}
+
+/* Ícone SVG da câmera */
+.avaliacao-icone-camera {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Botão de envio ────────────────────────────────────────────── 
+   Primário: laranja-sol. Quando desabilitado, tom acinzentado.
+────────────────────────────────────────────────────────────── */
+.avaliacao-btn-enviar {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: var(--laranja-sol);
+  color: var(--branco);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.avaliacao-btn-enviar:hover {
+  background: #d4640a;
+}
+
+.avaliacao-btn-enviar:active {
+  transform: scale(0.98);
+}
+
+/* Estado desabilitado: quando nenhuma estrela foi marcada */
+.avaliacao-btn-enviar--desabilitado {
+  background: var(--areia-escura);
+  color: var(--texto-muted);
+  cursor: not-allowed;
+}
+
+.avaliacao-btn-enviar--desabilitado:hover {
+  background: var(--areia-escura);
+}

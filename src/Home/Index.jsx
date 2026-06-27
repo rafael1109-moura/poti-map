@@ -1,8 +1,7 @@
-import React from 'react'
 import './Style.css'
 import Navbar from './Navbar'
 import Hero from './Hero'
-import Mapa from '../Mapa/Index'
+import Mapa from '../Mapa/Mapa'
 
 function Index({ onNavigate }) {
   return (

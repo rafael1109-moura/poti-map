@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Home from './Home/Index'
 import User from './User/Index'
 import Register from './Register/Index'
