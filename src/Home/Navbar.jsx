@@ -28,13 +28,18 @@ function Navbar({ onNavigate, contactView = 'home' }) {
 
   return (
     <header className={`site-header ${isVisible ? 'visible' : 'hidden'}`}>
-      <div className="brand-block">
+      <button
+        className="brand-block brand-button"
+        type="button"
+        onClick={() => onNavigate?.('home', 'home')}
+        aria-label="Voltar para a hero da pagina inicial"
+      >
         <img className="brand-logo" src={potiMapLogo} alt="" aria-hidden="true" />
         <div>
           <h2>Tatour</h2>
           <p>Se aventure no Rio Grande do Norte</p>
         </div>
-      </div>
+      </button>
 
       <nav className="navbar" aria-label="Navegação principal">
         {navItems.map((item) => (

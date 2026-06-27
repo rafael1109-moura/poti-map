@@ -104,7 +104,7 @@ function Register({ initialMode = 'signup', onNavigate }) {
 
       <section className="register-panel" aria-label="Cadastro de usuario">
         <header className="register-header">
-          <button className="register-brand" type="button" onClick={() => onNavigate?.('home')} aria-label="Voltar para a pagina inicial">
+          <button className="register-brand" type="button" onClick={() => onNavigate?.('home', 'home')} aria-label="Voltar para a hero da pagina inicial">
             <img src={potiMapLogo} alt="" aria-hidden="true" />
             <span>Tatour</span>
           </button>
