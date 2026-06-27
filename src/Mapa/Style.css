@@ -1,0 +1,12 @@
+    body {
+        margin: 0;
+    }
+    #re-render {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+    }
+    #map {
+        height: 100%;
+    }
