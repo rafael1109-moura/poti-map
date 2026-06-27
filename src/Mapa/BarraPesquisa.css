@@ -1,0 +1,216 @@
+/* ================================================================
+   BarraPesquisa.css
+   Barra de pesquisa flutuante no topo do mapa.
+   Variáveis de cor definidas em DrawerLocal.css (:root).
+================================================================ */
+
+/* ── Container posicionado sobre o mapa ─────────────────────────
+   position: absolute + z-index alto garante que fique
+   por cima do canvas do Mapbox sem tirar o mapa do fluxo.
+   A largura é limitada para não encostar nas bordas em mobile.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-container {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);   /* centraliza horizontalmente */
+  width: calc(100% - 32px);      /* 16px de margem em cada lado */
+  max-width: 520px;
+  z-index: 50;                   /* acima do mapa, abaixo do drawer */
+}
+
+/* ── Wrapper do input ───────────────────────────────────────────
+   Fundo branco com sombra, agrupa o input e os ícones.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 0 14px;
+  height: 52px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18),
+              0 1px 4px  rgba(0, 0, 0, 0.10);
+  transition: box-shadow 0.2s;
+}
+
+/* Sombra maior ao focar (feedback visual) */
+.barra-pesquisa-input-wrapper:focus-within {
+  box-shadow: 0 4px 24px rgba(26, 111, 168, 0.22),
+              0 1px 6px  rgba(0, 0, 0, 0.10);
+}
+
+/* ── Ícone de lupa ──────────────────────────────────────────────
+   Cor azul-mar para reforçar a paleta de turismo.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-icone-lupa {
+  width: 20px;
+  height: 20px;
+  color: var(--azul-mar);
+  flex-shrink: 0;
+}
+
+/* ── Campo de texto ──────────────────────────────────────────────
+   flex: 1 faz ele ocupar todo o espaço entre os ícones.
+   Removemos o estilo padrão do type="search" (o X nativo).
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--texto-escuro);
+  background: transparent;
+  min-width: 0;                  /* impede overflow em telas pequenas */
+}
+
+.barra-pesquisa-input::placeholder {
+  color: var(--texto-muted);
+}
+
+/* Remove o botão X nativo do type="search" em webkit */
+.barra-pesquisa-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* ── Spinner de carregamento ────────────────────────────────────
+   Anel giratório simples em CSS puro, sem imagem externa.
+   Aparece enquanto a requisição ao back-end está em andamento.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--areia-escura);
+  border-top-color: var(--azul-mar);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: girarSpinner 0.7s linear infinite;
+}
+
+@keyframes girarSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Botão limpar (X) ────────────────────────────────────────────
+   Aparece só quando há texto digitado e não está carregando.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-btn-limpar {
+  background: var(--areia);
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
+  color: var(--texto-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.barra-pesquisa-btn-limpar:hover {
+  background: var(--areia-escura);
+  color: var(--texto-escuro);
+}
+
+/* ── Dropdown de sugestões ──────────────────────────────────────
+   Lista que aparece abaixo do campo com os resultados da busca.
+   border-radius menor no topo para parecer continuação do input.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-sugestoes {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 6px 0;
+  background: var(--branco);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14),
+              0 1px 4px  rgba(0, 0, 0, 0.08);
+  max-height: 280px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Item de sugestão ───────────────────────────────────────────
+   Linha clicável com ícone de pin, nome, endereço e nota.
+────────────────────────────────────────────────────────────── */
+.barra-pesquisa-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.barra-pesquisa-item:hover,
+.barra-pesquisa-item:focus {
+  background: var(--azul-mar-claro);
+  outline: none;
+}
+
+/* Ícone de pin laranja à esquerda de cada resultado */
+.barra-pesquisa-icone-pin {
+  width: 20px;
+  height: 20px;
+  color: var(--laranja-sol);
+  flex-shrink: 0;
+}
+
+/* Textos: nome em negrito acima, endereço menor abaixo */
+.barra-pesquisa-item-texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;                  /* permite truncamento com ellipsis */
+}
+
+.barra-pesquisa-item-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-escuro);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barra-pesquisa-item-endereco {
+  font-size: 12px;
+  color: var(--texto-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Nota do local à direita (estrela + número) */
+.barra-pesquisa-item-nota {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--laranja-sol);
+  flex-shrink: 0;
+}
+
+/* Mensagem quando nenhum resultado é encontrado */
+.barra-pesquisa-sem-resultado {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--texto-muted);
+  text-align: center;
+}
+
+/* ── Responsividade ──────────────────────────────────────────────
+   Em telas muito pequenas, reduz o padding para caber melhor.
+────────────────────────────────────────────────────────────── */
+@media (max-width: 360px) {
+  .barra-pesquisa-input-wrapper {
+    padding: 0 10px;
+    height: 48px;
+  }
+  .barra-pesquisa-input {
+    font-size: 14px;
+  }
+}
